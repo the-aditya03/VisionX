@@ -181,7 +181,7 @@ user_tweets (user_id, fetched_from_id, tweets_data, fetched_at, expires_at)
 
 ## License
 
-This project is licensed under the MIT License – see the [LICENSE](LICENSE.txt) file.
+This project is licensed under the MIT License – see the [LICENSE](LICENSE) file.
 
 ---
 
