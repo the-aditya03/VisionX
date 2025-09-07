@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "VisionX",
+  "version": "2.0.0",
+  "description": "A Chrome extension to view friend's X feed",
+
+  "permissions": ["tabs", "activeTab", "scripting","downloads","cookies","storage"],
+
+  "host_permissions": [
+    "https://x.com/*",
+    "https://backend-0s46.onrender.com/*",
+    "http://localhost:*/*"
+  ],
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "X Feed Viewer",
+    "default_icon": "icon.png"
+  },
+
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://x.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+
+  "web_accessible_resources": [{
+    "resources": ["tweets.json"],
+    "matches": ["<all_urls>"]
+  }],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

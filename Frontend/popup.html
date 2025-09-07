@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Extension</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>VisionX</h1>
+        </div>
+
+        <!-- Loading state -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+
+        <!-- Authentication forms -->
+        <div id="auth-section" class="auth-section">
+            <!-- Login Form -->
+            <div id="login-form" class="form-container">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label for="login-username">Username:</label>
+                        <input type="text" id="login-username" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="login-password">Password:</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <p class="form-toggle">
+                    Don't have an account? 
+                    <a href="#" id="show-register">Register here</a>
+                </p>
+            </div>
+
+            <!-- Register Form -->
+            <div id="register-form" class="form-container hidden">
+                <h2>Register</h2>
+                <form id="registerForm">
+                    <div class="input-group">
+                        <label for="register-username">Username:</label>
+                        <input type="text" id="register-username" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="register-email">Email:</label>
+                        <input type="email" id="register-email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="register-password">Password:</label>
+                        <input type="password" id="register-password" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="register-confirm-password">Confirm Password:</label>
+                        <input type="password" id="register-confirm-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+                <p class="form-toggle">
+                    Already have an account? 
+                    <a href="#" id="show-login">Login here</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Dashboard (shown when logged in) -->
+        <div id="dashboard" class="dashboard hidden">
+            <div class="user-info">
+                <h2>Welcome, <span id="username-display"></span>!</h2>
+                <div class="user-details">
+                    <p><strong>Email:</strong> <span id="email-display"></span></p>
+                    <p><strong>Member since:</strong> <span id="created-display"></span></p>
+                    <button id="fetch-cookies-btn" class="btn btn-primary">Send Your Feed</button>
+                </div>
+            </div>
+
+            <!-- Feed Sharing Section -->
+            <div class="feed-sharing">
+                <h3>Feed Sharing</h3>
+                
+                <!-- Share Feed Form -->
+                <div class="share-form">
+                    <div class="input-group">
+                        <label for="share-username">Share with user:</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="share-username" placeholder="Enter username" style="flex: 1;">
+                            <button id="share-feed-btn" class="btn btn-primary" style="width: auto; padding: 8px 16px;">Share</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Shared Users List -->
+                <div class="shared-users-section">
+                    <h4>Your Feed Viewers</h4>
+                    <div id="shared-users-list" class="shared-users-list">
+                        <!-- <p class="no-shares">No Viewers</p> -->
+                    </div>
+                </div>
+            </div>
+          <!-- Accessible Feeds Section -->
+                <div class="feed-sharing">
+                    <h3>Feed Accessing</h3>
+                    <h4>Feeds Shared With You</h4>
+                    <div id="fetch-users-list" class="shared-users-list">
+        <!-- Example entry (populate dynamically) -->
+        <!--
+        <div class="user-entry">
+            <span class="username">prady</span>
+            <button class="btn btn-primary">Load Feed</button>
+        </div>
+        -->
+                    </div>
+                </div>
+
+                
+            <div class="actions">
+                <!-- <button id="refresh-profile" class="btn btn-secondary">Refresh Profile</button> -->
+                <button id="logout-btn" class="btn btn-danger">Logout</button>
+                <button id="delete-account-btn" class="danger-btn">Delete Account</button>
+                <div id="delete-confirm" class="hidden">
+                    <p>Are you sure? This cannot be undone.</p>
+                    <input type="password" id="delete-password" placeholder="Enter your password">
+                    <div class="button-group">
+                        <button id="confirm-delete-btn" class="danger-btn">Confirm Delete</button>
+                        <button id="cancel-delete-btn">Cancel</button>
+                    </div>
+                    <p id="delete-error" class="error-message"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error messages -->
+        <div id="error-message" class="error-message hidden">
+            <p id="error-text"></p>
+            <button id="close-error" class="close-btn">&times;</button>
+        </div>
+
+        <!-- Success messages -->
+        <div id="success-message" class="success-message hidden">
+            <p id="success-text"></p>
+            <button id="close-success" class="close-btn">&times;</button>
+        </div>
+
+        <!-- API URL Configuration -->
+        <!-- <div class="config-section">
+            <details>
+                <summary>Configuration</summary>
+                <div class="input-group">
+                    <label for="api-url">API Base URL:</label>
+                    <input type="url" id="api-url" placeholder="https://backend-0s46.onrender.com">
+                    <button id="save-config" class="btn btn-small">Save</button>
+                </div>
+            </details>
+        </div> -->
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
